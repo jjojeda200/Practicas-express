@@ -1,13 +1,12 @@
 # GitHub Codespaces ♥️ Express
 
-Welcome to your shiny new Codespace running Express! We've got everything fired up and running for you to explore Express.
+¡Bienvenido a tu nuevo y brillante Codespace con Express! Tenemos todo listo y funcionando para que explores Express.
 
-You've got a blank canvas to work on from a git perspective as well. There's a single initial commit with the what you're seeing right now - where you go from here is up to you!
+También tienes un lienzo en blanco en el que trabajar desde una perspectiva de Git. Hay una única confirmación inicial con lo que estás viendo ahora mismo; ¡tú decides a dónde vas a partir de aquí!
 
-Everything you do here is contained within this one codespace. There is no repository on GitHub yet. If and when you’re ready you can click "Publish Branch" and we’ll create your repository and push up your project. If you were just exploring then and have no further need for this code then you can simply delete your codespace and it's gone forever.
+Todo lo que hagas aquí está contenido en este único Codespace. Todavía no hay un repositorio en GitHub. Cuando estés listo, puedes hacer clic en "Publicar rama" y crearemos tu repositorio y subiremos tu proyecto. Si recién estabas explorando y ya no necesitas este código, puedes simplemente eliminar tu Codespace y desaparecerá para siempre.
 
-To run this application:
-
+Para ejecutar esta aplicación:
 ```
 npm start
 ```
