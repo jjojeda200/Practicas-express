@@ -1,61 +1,9 @@
-<!-- public/index.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Gestión de Usuarios</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 2rem;
-            background-color: #f0f2f5;
-        }
-        h1 {
-            color: #333;
-        }
-        form, .usuarios {
-            background: white;
-            padding: 1rem;
-            margin-bottom: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-        input[type="text"] {
-            width: 100%;
-            padding: 0.5rem;
-            margin-bottom: 1rem;
-        }
-        button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        li {
-            margin-bottom: 0.5rem;
-        }
-        .usuario {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .usuario span {
-            flex: 1;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -81,90 +29,6 @@
         <p id="mensaje-bienvenida"></p>
     </section>
 
-    <script>
-        const API_URL = '/api/usuarios';
-        const listaUsuarios = document.getElementById('lista-usuarios');
-        const formularioCrear = document.getElementById('formulario-crear');
-        const mensajeBienvenida = document.getElementById('mensaje-bienvenida');
-        const btnBienvenida = document.getElementById('btn-bienvenida');
-
-        async function cargarUsuarios() {
-            listaUsuarios.innerHTML = '';
-            try {
-                const respuesta = await fetch(API_URL);
-                const usuarios = await respuesta.json();
-
-                usuarios.forEach(usuario => {
-                    const li = document.createElement('li');
-                    li.className = 'usuario';
-                    li.innerHTML = `
-                        <span>${usuario.nombre}</span>
-                        <button onclick="eliminarUsuario(${usuario.id})">Eliminar</button>
-                    `;
-                    listaUsuarios.appendChild(li);
-                });
-            } catch (error) {
-                console.error('Error al cargar usuarios:', error);
-            }
-        }
-
-        async function eliminarUsuario(id) {
-            if (!confirm('¿Seguro que quieres eliminar este usuario?')) return;
-            try {
-                const respuesta = await fetch(`${API_URL}/${id}`, {
-                    method: 'DELETE'
-                });
-                if (respuesta.status === 204) {
-                    cargarUsuarios();
-                } else {
-                    const error = await respuesta.json();
-                    alert(error.error || 'Error al eliminar usuario.');
-                }
-            } catch (error) {
-                console.error('Error al eliminar usuario:', error);
-            }
-        }
-
-        formularioCrear.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const nombre = document.getElementById('nombre').value.trim();
-            if (!nombre) {
-                alert('El nombre no puede estar vacío.');
-                return;
-            }
-            try {
-                const respuesta = await fetch(API_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ nombre })
-                });
-                if (respuesta.ok) {
-                    document.getElementById('nombre').value = '';
-                    cargarUsuarios();
-                } else {
-                    const error = await respuesta.json();
-                    alert(error.error || 'Error al crear usuario.');
-                }
-            } catch (error) {
-                console.error('Error al crear usuario:', error);
-            }
-        });
-
-        btnBienvenida.addEventListener('click', async () => {
-            try {
-                const respuesta = await fetch('/bienvenida');
-                const mensaje = await respuesta.text();
-                mensajeBienvenida.textContent = mensaje;
-            } catch (error) {
-                console.error('Error al obtener mensaje de bienvenida:', error);
-            }
-        });
-
-        // Cargar usuarios al iniciar
-        cargarUsuarios();
-    </script>
-
+    <script type="module" src="./js/main.js"></script>
 </body>
 </html>

@@ -1,4 +1,5 @@
-const API_URL = '/api/usuarios';
+
+const API_URL = 'https://special-adventure-75gqjjv76j4hx7g9-3000.app.github.dev/api/usuarios';
 
 const listaUsuarios = document.getElementById('lista-usuarios');
 const formularioCrear = document.getElementById('formulario-crear');
@@ -86,4 +87,4 @@ btnBienvenida.addEventListener('click', async () => {
 });
 
 // Inicializar
-cargarUsuarios();8
+cargarUsuarios();
